@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investigação: Golpe IPVA 2026</title>
+    <style>
+        :root {
+            --bg-color: #2c3e50;
+            --folder-color: #f4f1ea; /* Cor de papel antigo */
+            --accent-red: #c0392b; /* Vermelho carimbo */
+            --accent-blue: #2980b9;
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            /* Padrão de grade para lembrar mapa */
+            background-image: radial-gradient(#34495e 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        .container {
+            background-color: var(--folder-color);
+            max-width: 600px;
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #bdc3c7;
+        }
+
+        /* Topo estilo Pasta de Arquivo */
+        header {
+            background-color: var(--accent-blue);
+            color: white;
+            padding: 15px;
+            border-bottom: 4px solid #1a5276;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge {
+            background: var(--accent-red);
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 3px;
+            transform: rotate(-5deg);
+        }
+
+        /* Barra de Progresso */
+        .progress-bar {
+            height: 6px;
+            background: #bdc3c7;
+            width: 100%;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-red);
+            width: 10%;
+            transition: width 0.3s ease;
+        }
+
+        /* Conteúdo dos Steps */
+        .step-content {
+            padding: 25px;
+            display: none; /* Escondido por padrão */
+            animation: slideUp 0.5s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--accent-blue);
+            border-bottom: 2px dashed var(--accent-blue);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .evidence-card {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 15px 0;
+            transform: rotate(1deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .evidence-icon {
+            font-size: 2rem;
+            float: right;
+            margin-left: 10px;
+        }
+
+        .alert-box {
+            background-color: #fadbd8;
+            border-left: 5px solid var(--accent-red);
+            padding: 10px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* Botões */
+        .btn-action {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent-dark);
+            color: var(--text-dark);
+            border: 2px solid var(--text-dark);
+            font-family: inherit;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-top: 20px;
+            transition: all 0.2s;
+            background: transparent;
+        }
+
+        .btn-action:hover {
+            background-color: var(--text-dark);
+            color: white;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .checklist li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 400px) {
+            .container { margin: 10px; width: auto; }
+            h1 { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>📁 CASO: IPVA 2026</h1>
+                <small>Agente: Você</small>
+            </div>
+            <div class="badge">TOP SECRET</div>
+        </header>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <div id="step-0" class="step-content active">
+            <h2>🚨 INFORME DA CENTRAL</h2>
+            <p><strong>Agente, atenção!</strong></p>
+            <p>Nossos sistemas detectaram um aumento massivo de atividades fraudulentas focadas no <strong>IPVA 2026</strong>. Um sindicato criminoso está espalhando armadilhas digitais.</p>
+            
+            <div class="evidence-card">
+                <span class="evidence-icon">🕵️‍♀️</span>
+                <p><strong>SUA MISSÃO:</strong><br>Analisar as 3 pistas coletadas e identificar o padrão do golpe antes que ele atinja nossos colaboradores.</p>
+            </div>
+
+            <button class="btn-action" onclick="nextStep(1)">ACEITAR MISSÃO >></button>
+        </div>
+
+        <div id="step-1" class="step-content">
+            <h2>📍 PISTA 1: A OFERTA</h2>
+            <p>Interceptamos uma mensagem SMS enviada para milhares de celulares.</p>
+            
+            <div class="evidence-card" style="font-family: sans-serif; border-left: 4px solid #2ecc71;">
+                <span class="evidence-icon">📱</span>
+                <small>Mensagem Recebida:</small>
+                <p><em>"Seu IPVA 2026 está com desconto exclusivo de 30%. Pague agora via PIX para evitar juros. Link: detran-pagamentos-gov.com"</em></p>
+            </div>
+
+            <div class="alert-box">
+                <strong>⚠️ ANÁLISE TÉCNICA:</strong><br>
+                Órgãos públicos NÃO enviam links de pagamento via SMS ou WhatsApp de forma ativa. Desconfie de "descontos exclusivos" fora do calendário oficial.
+            </div>
+
+            <button class="btn-action" onclick="nextStep(2)">🔍 EXAMINAR O SITE</button>
+        </div>
+
+        <div id="step-2" class="step-content">
+            <h2>📍 PISTA 2: O DISFARCE</h2>
+            <p>Ao clicar no link (em ambiente seguro), nossos analistas encontraram um site clone.</p>
+            
+            <div class="evidence-card">
+                <span class="evidence-icon">🌐</span>
+                <p><strong>O que vemos:</strong></p>
+                <ul>
+                    <li>Logotipo idêntico ao do Detran.</li>
+                    <li>Cores oficiais do governo.</li>
+                    <li>Linguagem formal e jurídica.</li>
+                </ul>
+            </div>
+
+            <div class="alert-box">
+                <strong>🕶️ O DETALHE REVELADOR:</strong><br>
+                Olhe a URL (endereço). Golpistas usam domínios como <em>.xyz, .net, -pagamentos.com</em>. O oficial geralmente termina em <strong>.gov.br</strong>.
+            </div>
+
+            <button class="btn-action" onclick="nextStep(3)">⏱️ VERIFICAR PAGAMENTO</button>
+        </div>
+
+        <div id="step-3" class="step-content">
+            <h2>📍 PISTA 3: O GATILHO</h2>
+            <p>O site falso não deixa você pensar. Ele exibe um contador regressivo.</p>
+            
+            <div class="evidence-card" style="text-align: center;">
+                <span class="evidence-icon">⏳</span>
+                <h3 style="color: red; margin: 0;">OFERTA EXPIRA EM: 04:59</h3>
+                <p>QR CODE PIX GERADO</p>
+            </div>
+
+            <div class="alert-box">
+                <strong>🧠 PSICOLOGIA DO GOLPE:</strong><br>
+                Eles usam a pressa para que você não confira os dados. O medo de perder o desconto faz a vítima agir por impulso.
+            </div>
+
+            <button class="btn-action" onclick="nextStep(4)">🛡️ GERAR RELATÓRIO FINAL</button>
+        </div>
+
+        <div id="step-4" class="step-content">
+            <h2>🛡️ RELATÓRIO DO AGENTE</h2>
+            <p>Investigação concluída. Aqui estão os protocolos de segurança aprovados:</p>
+
+            <div class="evidence-card">
+                <strong>✅ AÇÕES CORRETAS:</strong>
+                <ul class="checklist">
+                    <li>Acesse diretamente o site oficial (digite www... no navegador).</li>
+                    <li>Nunca clique em links de SMS/E-mail sobre impostos.</li>
+                    <li>Na hora do PIX: Confira o Destinatário (Deve ser o Governo do Estado, nunca uma pessoa ou empresa LTDA).</li>
+                </ul>
+            </div>
+
+            <div class="evidence-card" style="border-left: 4px solid #c0392b;">
+                <strong>❗ JÁ PAGOU? O QUE FAZER:</strong>
+                <ul class="checklist" style="color: #c0392b;">
+                    <li>Contate seu banco imediatamente (Mecanismo Especial de Devolução).</li>
+                    <li>Guarde comprovantes e prints.</li>
+                    <li>Faça um Boletim de Ocorrência Online.</li>
+                </ul>
+            </div>
+
+            <button class="btn-action" onclick="location.reload()">🏆 ENCERRAR CASO</button>
+        </div>
+
+        <footer>
+            Fonte: TechTudo – Campanha de Conscientização TI
+        </footer>
+    </div>
+
+    <script>
+        function nextStep(stepNumber) {
+            // Esconde todos os passos
+            const steps = document.querySelectorAll('.step-content');
+            steps.forEach(step => step.classList.remove('active'));
+
+            // Mostra o passo atual
+            const currentStep = document.getElementById(`step-${stepNumber}`);
+            if (currentStep) {
+                currentStep.classList.add('active');
+            }
+
+            // Atualiza barra de progresso
+            // Temos 5 passos (0 a 4). 
+            // Passo 0 = 10%, Passo 1 = 30%, Passo 2 = 50%, Passo 3 = 75%, Passo 4 = 100%
+            let width = '10%';
+            if(stepNumber === 1) width = '30%';
+            if(stepNumber === 2) width = '55%';
+            if(stepNumber === 3) width = '80%';
+            if(stepNumber === 4) width = '100%';
+            
+            document.getElementById('progress').style.width = width;
+            
+            // Rola para o topo do container (útil em mobile)
+            document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
